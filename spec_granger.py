@@ -56,7 +56,7 @@ def _FactorWilson(S, freqs, Niterations = 100, tol = 1e-19, init = 'chol'):
         For now the outputs take the shape of 4 rows for each combination H11;H12;H21;H22 etc
         H: (transfer function)
         Z: (noise covariance)
-        S: (cross-spectral density 1-sided)
+        S: (cross-spectral density 2-sided)
         psi: (left spectral factor)
         
         usage in feartrip, they get the auto/cross spectra with ft_freqanalysis
