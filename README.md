@@ -22,7 +22,7 @@ thus from -nyquist to nyquist. (you can plug in the result from an fft directly)
 
 Other matrices such as H and S(output) are one-sided. Z has no frequency dimension because it represents the noise covariances.
 
-the granger spectrum is yielded for each direction seperatly and one dimension
+the granger spectrum is yielded for each direction seperatly and has one frequency dimension
 
 
 
