@@ -184,7 +184,7 @@ def _FactorWilson(S, freqs, Niterations = 100, tol = 1e-19, init = 'chol'):
 def _PlusOperator(g, ncmb, nfreq):
     """
     This is the []+ operator as describes in wilson's paper
-    here I have dropped the reshaping as in feartrip's code for selecting an
+    here I have dropped the reshaping as in fieldtrip's code for selecting an
     axis for the fft
     
     """
