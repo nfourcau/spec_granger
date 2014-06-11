@@ -8,9 +8,9 @@ def NPSpectralGranger(S, freqs, mode='bivariate', pair_list=[], **kwargs):
     (see Dhamala et al. 2008 for details)
     
     Input:
-    S : 2-sided spectral matrices (np.ndarray of shape freq x channel x channel)
+    S : 2-sided spectral matrices: np.ndarray of shape (freq x channel x channel)
 
-    freqs : vector of frequency where the spectral matrices was computed (positive frequencies only)
+    freqs : vector of frequencies where the spectral matrices was computed (positive frequencies only)
 
     mode : 
     * 'bivariate' : extraction of 2X2 spectral matrices and computation of spectral Granger causality for each pair
@@ -18,13 +18,12 @@ def NPSpectralGranger(S, freqs, mode='bivariate', pair_list=[], **kwargs):
                             and Granger causality is then computed from 2x2 extractions of the factorized matrix.
     * 'conditional' : all channels which are not part of the pair under study are considered as a "conditional signal"
 
-    pair_list : list of tuples with channel pair indices for which Granger causality (both direction) will be computed. If the list is empt
-    y, all possible pairs are computed
+    pair_list : list of tuples with channel pair indices for which Granger causality (both direction) will be computed. If the list is empty, all possible pairs are computed
     
     kwargs : are used to pass Wilson algorithm parameters, in particular "Niterations"
 
     Output:
-    Granger : an array of 'object'. Granger[n1,n2] is the Granger spectrum of n2 influencing n1. It is None is this particular pair has not been computed
+    Granger : an array of 'object'. Granger[n1,n2] is the Granger spectrum of n2 influencing n1. It is None if this particular pair has not been computed
     """
     nchan=S.shape[1]
     Granger=np.empty((nchan,nchan),dtype='object') # Better than a sparse matrix ???
@@ -206,13 +205,11 @@ def _FactorWilsonMultivariate(S, freqs, Niterations = 100, tol = 1e-19, init = '
             tmp = np.random.randn(m,1000) # arbitrary initial condition
             tmp = np.dot(tmp,tmp.transpose())/1000.
             tmp = np.transpose(np.linalg.cholesky(tmp))
-            tmp = tmp[:,:,np.newaxis]
     elif init == 'rand': # random initial conditions
         print "Random initialization of Wilson algo"
         tmp = randn(m,1000) # arbitrary initial condition
         tmp = np.dot(tmp,tmp.transpose())/1000.
         tmp = np.transpose(np.linalg.cholesky(tmp))
-        tmp = tmp[:,:,np.newaxis]
     else:
         assert(init not in ['chol', 'rand'])
         raise ArgumentError("initialization option either 'chol' or 'rand'")
